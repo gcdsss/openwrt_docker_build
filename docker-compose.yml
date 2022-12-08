@@ -1,0 +1,18 @@
+version: '3'
+services:
+  openwrt_build:
+    logging:
+      driver: json-file
+      options:
+        max-size: "100M"
+        max-file: "10"
+    volumes:
+      - ./:/openwrt_build
+    platform:
+      linux/amd64
+    build: .
+    container_name: openwrt_build
+    working_dir: /openwrt_build
+    command: /bin/bash
+    environment:
+      - TZ=Asia/Shanghai
