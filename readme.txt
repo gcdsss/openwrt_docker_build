@@ -1,3 +1,8 @@
+Usage MacOS
+
+hdiutil create -size 20g -fs "Case-sensitive HFS+" -volname OpenWrt OpenWrt.dmg
+hdiutil attach OpenWrt.dmg
+
 docker buildx build --platform=linux/amd64 -t guihua/openwrt_build .
 
 docker run --rm -it -v $(pwd):/openwrt_build -w /openwrt_build guihua/openwrt_build /bin/bash
@@ -17,7 +22,6 @@ git checkout v21.02.3
  
 # Configure the firmware image and the kernel
 make menuconfig
-make -j $(nproc) kernel_menuconfig
- 
+
 # Build the firmware image
-make -j $(nproc) defconfig download clean world
+make -j $(nproc)
